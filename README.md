@@ -12,6 +12,10 @@ Discord.py を使った DiscordBot
 
 ## インストール方法
 
+- poetry
+`poetry install`
+
+- pip
 `pip install -r requirements.txt`
 
 .env.example を .env にリネームして、トークンを入力してください

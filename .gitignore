@@ -9,3 +9,6 @@ __pycache__/
 
 #mp3
 *.mp3
+
+# poetry
+poetry.lock
