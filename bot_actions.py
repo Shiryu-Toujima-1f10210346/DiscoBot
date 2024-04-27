@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
-from datetime import datetime
-intents = discord.Intents.all()
 from commands import suffix_enabled_string
+from datetime import datetime
+
+intents = discord.Intents.all()
+
 bot = commands.Bot(command_prefix="/", intents=intents, case_insensitive=True)
 
 # ユーザーの滞在時間を記録するための辞書

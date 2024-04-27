@@ -51,5 +51,7 @@ async def on_message(message):
 # VCの滞在時間を記録
 @bot.event
 async def on_voice_state_update(member, before, after):
+    if member.bot:
+        return
     await record_time(member, before, after)
 bot.run(TOKEN)

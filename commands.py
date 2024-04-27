@@ -103,6 +103,7 @@ def setup(bot):
     @tree.command(name="say", description="ボイスチャンネル内で言語に応じて喋ります")
     @app_commands.describe(lang_code="言語コード", message="話すメッセージ")
     async def say(interaction: discord.Interaction, lang_code: str, message: str):
+        await interaction.response.defer()
         try:
             # botがVCに参加しているか確認
             was_connected = interaction.guild.voice_client is None
@@ -134,10 +135,11 @@ def setup(bot):
 
             if was_connected:
                 await interaction.guild.voice_client.disconnect()
-                await interaction.response.send_message(f"{interaction.user.mention}に{message}と言わされました･･･")
         except Exception as e:
             await interaction.response.send_message(f"エラーが発生しました: {e}")
-
+        else:
+            await interaction.followup.send_message(f"{interaction.user.mention}に{message}と言わされました･･･")
+            
     ####################################################################################
     ####################################################################################
 
