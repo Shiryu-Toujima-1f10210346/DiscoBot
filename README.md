@@ -6,7 +6,7 @@ Discord.py を使った DiscordBot
 
 ## 使い方
 
-`!help`
+`/help`
 
 でコマンド一覧が表示されます
 
