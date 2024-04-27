@@ -36,12 +36,14 @@ async def on_message(message):
         print(f"{message.author.display_name}: {message.content}")
     if message.author.bot or message.content.startswith(bot.command_prefix):
         return
-    # startswith https で始まるメッセージは無視 ファイルも無視 
-    # メンションがメッセージないのどこかにある場合も無視
     if any(
         message.content.startswith(prefix) for prefix in ("https", "http", "www", "!", "```", "！")
-    ) or message.attachments or message.mentions :
+    ) :
         return
+    if  message.attachments or message.mentions :
+        return  
+    if len(message.content) > 200:
+        return 
     await replace_suffix(message) # 語尾DBチャンネルを取得
 
     await bot.process_commands(message)

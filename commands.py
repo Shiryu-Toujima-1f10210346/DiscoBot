@@ -372,6 +372,9 @@ def setup(bot):
     async def register_suffix(
         interaction: discord.Interaction, user: discord.User, suffix: str
     ):
+        if len(suffix) > 20:
+            await interaction.response.send_message("語尾は20文字以内にしてください")
+            return
         # 語尾DBチャンネルを確認、なければ作成
         suffix_channel = discord.utils.get(interaction.guild.text_channels, name="語尾db")
         if not suffix_channel:

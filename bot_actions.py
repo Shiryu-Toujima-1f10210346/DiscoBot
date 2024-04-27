@@ -76,13 +76,13 @@ async def replace_suffix(message):
                 print("登録されたユーザーが発言しました")
                 print(f"ユーザーID: {user_id}, 語尾: {suffix}")
                 new_content = f"{message.content}{suffix}"
-                # quote = f"> {message.content}\n{message.author.mention}: {new_content}"
                 emoji = discord.utils.get(message.guild.emojis, name=message.author.name)
-                quote = f"{emoji} {message.author.display_name} : {new_content}"
-
-                # await message.reply(quote,silent=True)
-                await message.channel.send(quote,silent=True)
+                # embedで
+                embed = discord.Embed(title=message.author.display_name, description=new_content)
+                if emoji:
+                    embed.set_thumbnail(url=emoji.url)
                 await message.delete()
+                await message.channel.send(embed=embed)
                 break
     else:
         print("語尾データなし")
