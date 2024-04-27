@@ -531,6 +531,28 @@ def setup(bot):
         else:
             await interaction.response.send_message("語尾データなし")
 
+    @tree.command(name="gobienableall", description="全ての語尾を有効にします")
+    async def enable_all_suffix(interaction: discord.Interaction):
+        suffix_channel = discord.utils.get(interaction.guild.text_channels, name="語尾db")
+        if suffix_channel:
+            async for msg in suffix_channel.history(limit=200):
+                user_name, suffix, is_enabled = msg.content.split(maxsplit=2)
+                await msg.edit(content=f"{user_name} {suffix} {suffix_enabled_string(True)}")
+            await interaction.response.send_message("全ての語尾を有効にしました")
+        else:
+            await interaction.response.send_message("語尾データなし")
+    
+    @tree.command(name="gobidisableall", description="全ての語尾を無効にします")
+    async def disable_all_suffix(interaction: discord.Interaction):
+        suffix_channel = discord.utils.get(interaction.guild.text_channels, name="語尾db")
+        if suffix_channel:
+            async for msg in suffix_channel.history(limit=200):
+                user_name, suffix, is_enabled = msg.content.split(maxsplit=2)
+                await msg.edit(content=f"{user_name} {suffix} {suffix_enabled_string(False)}")
+            await interaction.response.send_message("全ての語尾を無効にしました")
+        else:
+            await interaction.response.send_message("語尾データなし")
+
     ####################################################################################
     ####################################################################################
 
