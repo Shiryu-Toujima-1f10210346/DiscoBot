@@ -41,7 +41,7 @@ async def update_ranking(member, minutes):
             return
 
     # 新規メッセージとして滞在時間を投稿
-    await ranking_channel.send(f"{member.display_name} の滞在時間: {format_duration(minutes)}")
+    await ranking_channel.send(f"{member.display_name} の滞在時間: {format_duration(minutes)}",silent=True)
 
 def extract_duration(content):
     # 既存の滞在時間（分）を抽出
